@@ -67,14 +67,25 @@ class CreateNewLanguage(PopUpTemplate):
         self.resize(300, 300)
 
         welcome_label = QLabel("Welcome to my Conlang App!\nLet's get started with some basic info.")
-        name_label = QLabel("Name")
-        name_input = QLineEdit()
+        name_label = QLabel("Language Name")
+        self.name_input = QLineEdit()
 
         enter_button = QPushButton("Done")
+        enter_button.clicked.connect(self.create_new_language)
 
 
         widgets = [welcome_label, name_label]
 
         layout = QGridLayout()
+        layout.addWidget(welcome_label)
+        layout.addWidget(name_label)
+        layout.addWidget(name_input)
+        self.setLayout(layout)
+
+    def create_new_language(self):
+        text = self.name_input.text().strip()
+        if not text:
+            pass
+        new_conlang = DatabaseManager(text)
 
 
