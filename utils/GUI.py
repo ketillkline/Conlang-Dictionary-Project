@@ -39,7 +39,9 @@ class DictionarySelectorDialog(QDialog):
 
     def add_new(self):
         window = CreateNewLanguage()
-        window.exec()
+        result = window.exec()
+        if result:
+            return self.get_selected_db()
 
     def get_selected_db(self):
         pass
@@ -66,6 +68,7 @@ class CreateNewLanguage(PopUpTemplate):
         self.setWindowTitle("Create New Language")
         self.resize(300, 300)
 
+
         welcome_label = QLabel("Welcome to my Conlang App!\nLet's get started with some basic info.")
         name_label = QLabel("Language Name")
         self.name_input = QLineEdit()
@@ -74,18 +77,20 @@ class CreateNewLanguage(PopUpTemplate):
         enter_button.clicked.connect(self.create_new_language)
 
 
-        widgets = [welcome_label, name_label]
 
         layout = QGridLayout()
         layout.addWidget(welcome_label)
         layout.addWidget(name_label)
-        layout.addWidget(name_input)
+        layout.addWidget(self.name_input)
+        layout.addWidget(enter_button)
         self.setLayout(layout)
 
     def create_new_language(self):
         text = self.name_input.text().strip()
         if not text:
             pass
+        print(text)
         new_conlang = DatabaseManager(text)
+        self.accept()
 
 
