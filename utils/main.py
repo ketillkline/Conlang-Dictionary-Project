@@ -34,3 +34,26 @@ for key, value in vowel_count.items():
 # -------------------------------------------------- #
 # ----- What consonants do we have? ----------- #
 
+consonant_dict = { # consonant, count
+
+}
+
+arkabanga_words = words.keys()
+for word in arkabanga_words:
+    for letter in word:
+        letter = letter.lower()
+        if letter in consonant_dict.keys():
+            consonant_dict[letter] +=1
+        else:
+            if letter == 'n':
+                if word[word.index(letter) + 1] == 'g' and word[word.index(letter) + 1]:
+                    consonant_dict['ng'] = 1
+                else:
+                    if consonant_dict['ng']:
+                        consonant_dict['ng'] +=1
+                    else:
+                        consonant_dict[letter] = 1
+            else:
+                consonant_dict[letter] = 1
+
+print(consonant_dict)
