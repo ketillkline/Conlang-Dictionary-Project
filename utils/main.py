@@ -51,14 +51,16 @@ count = 0
 for word in consonant_dict.keys():
     for letter in word:
         if letter.isalpha():
-            if letters[letter]:
+            if letter in letters:
                 letters[letter] +=1
             else:
                 letters[letter] = 1
-            print(f"Letter {count}: {letter}")
-            print(letters)
+            count+=1
+            print(count)
+
+
         else: continue
 
-
+print(letters)
 
 
