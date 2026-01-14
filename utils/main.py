@@ -45,15 +45,20 @@ for word in arkabanga_words:
         if letter in consonant_dict.keys():
             consonant_dict[letter] +=1
         else:
-            if letter == 'n':
-                if word[word.index(letter) + 1] == 'g' and word[word.index(letter) + 1]:
-                    consonant_dict['ng'] = 1
-                else:
-                    if consonant_dict['ng']:
-                        consonant_dict['ng'] +=1
-                    else:
-                        consonant_dict[letter] = 1
+            consonant_dict[letter] = 1
+letters = {}
+count = 0
+for word in consonant_dict.keys():
+    for letter in word:
+        if letter.isalpha():
+            if letters[letter]:
+                letters[letter] +=1
             else:
-                consonant_dict[letter] = 1
+                letters[letter] = 1
+            print(f"Letter {count}: {letter}")
+            print(letters)
+        else: continue
 
-print(consonant_dict)
+
+
+
